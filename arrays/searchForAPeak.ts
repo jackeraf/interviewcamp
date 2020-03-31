@@ -7,12 +7,17 @@ function peakSearch(a: number[]) {
   if (a == null || a.length == 0) return -1;
   let low = 0;
   let high = a.length - 1;
+  let tempMax = {
+    value: a[0],
+    index: 0
+  };
   while (low <= high) {
     let mid = Math.floor(low + (high - low) / 2);
     let left = mid > 0 ? a[mid - 1] : -Infinity;
     let right = mid < a.length - 1 ? a[mid + 1] : -Infinity;
+    let max = tempMax.value > a[mid] ? tempMax.index : mid;
     if (left < a[mid] && a[mid] > right) {
-      return mid;
+      return max;
     } else if (left < a[mid] && right > a[mid]) {
       low = mid + 1;
     } else {
@@ -24,5 +29,5 @@ function peakSearch(a: number[]) {
 console.log(peakSearch([]));
 console.log(peakSearch([1]));
 console.log(peakSearch([1, 3, 5, 4, 2]));
-console.log(peakSearch([9, 3, 4, 5, 2]));
+console.log(peakSearch([9, 3, 4, 5, 6]));
 console.log(peakSearch([1, 3, 4, 5, 9]));
