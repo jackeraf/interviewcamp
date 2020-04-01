@@ -19,6 +19,7 @@ function positivePower(x: number, power: number) {
   if (power == 1) return x;
   let halfPower = positivePower(x, Math.floor(power / 2));
   if (power % 2 == 0) {
+    // 2​^16​ = 2​8​ * 2​
     return halfPower * halfPower;
   } else {
     return x * halfPower * halfPower;
